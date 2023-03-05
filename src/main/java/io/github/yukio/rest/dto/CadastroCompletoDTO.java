@@ -1,5 +1,6 @@
 package io.github.yukio.rest.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ public class CadastroCompletoDTO {
 	
 	
 	public CadastroCompletoDTO converter(Pessoa pessoa) {
+		
 		return CadastroCompletoDTO.builder()
 				.codigo(pessoa.getId())
 				.nome(pessoa.getNome())
@@ -42,6 +44,22 @@ public class CadastroCompletoDTO {
 	}
 	
 	public static List<DadosBancoDTO> converterBanco(List<DadosBanco> dadosBanco) {
-		return dadosBanco.stream().map(DadosBancoDTO::new).collect(Collectors.toList());
+		List<DadosBancoDTO> list = new ArrayList<>();
+		
+		for (var dado : dadosBanco) {
+			var dados = DadosBancoDTO
+					.builder()
+					.cnpj(dado.getCnpj())
+					.local(dado.getLocal())
+					.nomeBanco(dado.getNomeBanco())
+					.build();
+			list.add(dados);
+		}
+		
+		return list;
+//		return dadosBanco
+//				.stream()
+//				.map(DadosBancoDTO::new)
+//				.collect(Collectors.toList());
 	}
 }

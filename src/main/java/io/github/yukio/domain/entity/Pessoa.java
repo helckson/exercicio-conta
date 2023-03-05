@@ -2,6 +2,7 @@ package io.github.yukio.domain.entity;
 
 import java.util.List;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,9 +34,6 @@ public class Pessoa {
 	
 	@Column(name = "num_conta", length = 10)
 	private Integer numConta;
-	
-	@Column(name = "cpf", length = 10)
-	private Integer cpf;
 	
 	@OneToMany(mappedBy = "pessoa")
 	private List<DadosBanco> itens;
